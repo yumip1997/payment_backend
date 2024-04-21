@@ -1,6 +1,7 @@
-package com.example.payment.processor;
+package com.example.payment.manager;
 
 import com.example.payment.define.PaymentType;
+import com.example.payment.processor.PaymentProcessor;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -19,9 +20,7 @@ public class PaymentProcessorManager {
         }
     }
 
-    public PaymentProcessor lookupPaymentProcessor(String pgCode, String payWayCode){
-        PaymentType paymentType = PaymentType.findPaymentType(pgCode, payWayCode);
-
+    public PaymentProcessor lookupPaymentProcessor(PaymentType paymentType){
         PaymentProcessor paymentProcessor = PAYMENT_TYPE_PAYMENT_PROCESSOR_MAP.get(paymentType);
         if(paymentProcessor != null){
             return paymentProcessor;
