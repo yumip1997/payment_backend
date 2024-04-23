@@ -2,6 +2,7 @@ package com.example.payment.define;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 @RequiredArgsConstructor
@@ -17,7 +18,8 @@ public enum PaymentType {
 
     public static PaymentType findPaymentType(String pgCode, String payWayCode){
         return Stream.of(values())
-                .filter(e -> e.pgType.getCode().equals(pgCode) && e.payWayType.getCode().equals(payWayCode))
+                .filter(e -> e.pgType.getCode().equals(pgCode)
+                        && e.payWayType.getCode().equals(payWayCode))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("결제 유형을 찾을 수 없습니다"));
     }
