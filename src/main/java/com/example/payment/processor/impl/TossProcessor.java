@@ -6,8 +6,10 @@ import com.example.payment.dto.request.PayRequest;
 import com.example.payment.dto.response.PayResponse;
 import com.example.payment.entity.PayBase;
 import com.example.payment.processor.PaymentProcessor;
+import org.springframework.stereotype.Component;
 
-public class TossCreditCardProcessor implements PaymentProcessor {
+@Component
+public class TossProcessor implements PaymentProcessor {
 
     @Override
     public PayResponse pay(PayRequest payRequest) {

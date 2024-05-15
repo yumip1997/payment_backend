@@ -1,5 +1,0 @@
-spring.application.name=payment
-
-pg.tossPropertyList[0].mid = tosstest
-pg.tossPropertyList[0].secretKey = test_ck_4yKeq5bgrpWWL1GeeBG4VGX0lzW6
-pg.tossPropertyList[0].clientKey = test_sk_Poxy1XQL8R9qDPRBpgJlr7nO5Wml

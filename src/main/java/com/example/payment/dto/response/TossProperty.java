@@ -7,7 +7,7 @@ public class TossProperty {
 
     private String mid;
     private String clientKey;
-    private String sercretKey;
+    private String secretKey;
     private String customerKey;
 
 }

@@ -4,6 +4,12 @@ import com.example.payment.dto.response.TossProperty;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.context.properties.bind.ConstructorBinding;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
@@ -14,6 +20,7 @@ import java.util.stream.Collectors;
 
 @ConfigurationProperties(prefix = "pg")
 @RequiredArgsConstructor
+@Component
 public class PgPropertyManager {
 
     private final List<TossProperty> tossPropertyList;

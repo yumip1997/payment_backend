@@ -9,11 +9,11 @@ import java.util.Set;
 @Getter
 public enum PgType {
 
-    TOSS("10", ""),
-    SETTLE_BANK("20", ""),
-    NONE_PG("99", "");
+    TOSS("10", Set.of("")),
+    SETTLE_BANK("20", Set.of("")),
+    NONE_PG("99", null);
 
     private final String code;
-    private final String successCode;
+    private final Set<String> successCodeSet;
 
 }

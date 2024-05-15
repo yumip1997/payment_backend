@@ -1,0 +1,15 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+
+pg:
+  toss-property-list[0]:
+    mid: test
+    secretKey: test_ck_4yKeq5bgrpWWL1GeeBG4VGX0lzW6
+    clientKey: test_sk_Poxy1XQL8R9qDPRBpgJlr7nO5Wml

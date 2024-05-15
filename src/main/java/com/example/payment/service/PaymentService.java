@@ -6,9 +6,7 @@ import com.example.payment.dto.request.PayRequest;
 import com.example.payment.dto.request.PayUnitRequest;
 import com.example.payment.dto.response.PayResponse;
 import com.example.payment.processor.PaymentProcessor;
-import com.example.payment.manager.PaymentProcessorManager;
 import com.example.payment.repository.PaymentRepository;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,6 @@ import java.util.List;
 @Slf4j
 public class PaymentService {
 
-    private final PaymentProcessorManager paymentProcessorManager;
     private final PaymentRepository paymentRepository;
 
     @Transactional
@@ -33,8 +30,7 @@ public class PaymentService {
 
         try{
             for (PayUnitRequest payUnitRequest : payRequest.getPayUnitRequestList()) {
-                PaymentType paymentType = PaymentType.findPaymentType(payUnitRequest.getPgCode(), payUnitRequest.getPayWayCode());
-                PaymentProcessor paymentProcessor = paymentProcessorManager.lookupPaymentProcessor(paymentType);
+                PaymentProcessor paymentProcessor = PaymentType.lookUpPaymentProcessor(payUnitRequest.getPgCode(), payUnitRequest.getPayWayCode());
 
                 PayResponse payResponse = paymentProcessor.pay(payRequest);
                 payResponseList.add(payResponse);
@@ -58,8 +54,7 @@ public class PaymentService {
 
         for (PayResponse payResponse : payResponseList) {
             try{
-                PaymentType paymentType = PaymentType.findPaymentType(payResponse.getPgCode(), payResponse.getPayWayCode());
-                PaymentProcessor paymentProcessor = paymentProcessorManager.lookupPaymentProcessor(paymentType);
+                PaymentProcessor paymentProcessor = PaymentType.lookUpPaymentProcessor(payResponse.getPgCode(), payResponse.getPayWayCode());
                 paymentProcessor.cancel(payResponse.toCancelRequest());
             }catch (Exception e){
                 log.error("net cancel error ordNo :  {}", payResponse.getOrdNo(), e);
@@ -71,8 +66,7 @@ public class PaymentService {
     public void cancel(List<CancelRequest> cancelRequestList){
         for (CancelRequest cancelRequest : cancelRequestList) {
             try{
-                PaymentType paymentType = PaymentType.findPaymentType(cancelRequest.getPgCode(), cancelRequest.getPayWayCode());
-                PaymentProcessor paymentProcessor = paymentProcessorManager.lookupPaymentProcessor(paymentType);
+                PaymentProcessor paymentProcessor = PaymentType.lookUpPaymentProcessor(cancelRequest.getPgCode(), cancelRequest.getPayWayCode());
                 paymentProcessor.cancel(cancelRequest);
             }catch (Exception e){
                 log.error("cancel error ordNo :  {}", cancelRequest.getOrdNo(), e);
