@@ -30,9 +30,10 @@ public class PaymentService {
 
         try{
             for (PayUnitRequest payUnitRequest : payRequest.getPayUnitRequestList()) {
-                PaymentProcessor paymentProcessor = PaymentType.lookUpPaymentProcessor(payUnitRequest.getPgCode(), payUnitRequest.getPayWayCode());
+                PaymentProcessor paymentProcessor = PaymentType
+                        .lookUpPaymentProcessor(payUnitRequest.getPgCode(), payUnitRequest.getPayWayCode());
 
-                PayResponse payResponse = paymentProcessor.pay(payRequest);
+                PayResponse payResponse = paymentProcessor.pay(payUnitRequest);
                 payResponseList.add(payResponse);
 
                 paymentRepository.save(payResponse.toPayBase());

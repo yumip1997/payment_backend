@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 public class PayResponse {
 
+    private String payNo;
     private String ordNo;
     private String pgCode;
     private String payWayCode;

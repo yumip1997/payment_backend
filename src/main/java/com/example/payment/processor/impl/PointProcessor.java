@@ -1,8 +1,7 @@
 package com.example.payment.processor.impl;
 
-import com.example.payment.define.PaymentType;
 import com.example.payment.dto.CancelRequest;
-import com.example.payment.dto.request.PayRequest;
+import com.example.payment.dto.request.PayUnitRequest;
 import com.example.payment.dto.response.PayResponse;
 import com.example.payment.entity.PayBase;
 import com.example.payment.processor.PaymentProcessor;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class PointProcessor implements PaymentProcessor {
     @Override
-    public PayResponse pay(PayRequest payRequest) {
+    public PayResponse pay(PayUnitRequest payUnitRequest) {
         return null;
     }
 
@@ -20,8 +19,4 @@ public class PointProcessor implements PaymentProcessor {
         return null;
     }
 
-    @Override
-    public PaymentType definePaymentType() {
-        return PaymentType.POINT;
-    }
 }

@@ -85,4 +85,8 @@ public class TossResponse {
         private String transactionKey;
         private String receiptKey;
     }
+
+    public PayResponse toPayResponse(){
+        return new PayResponse();
+    }
 }

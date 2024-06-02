@@ -9,7 +9,8 @@ spring:
     password:
 
 pg:
-  toss-property-list[0]:
-    mid: test
-    secretKey: test_ck_4yKeq5bgrpWWL1GeeBG4VGX0lzW6
-    clientKey: test_sk_Poxy1XQL8R9qDPRBpgJlr7nO5Wml
+  tossPropertyList:
+    - mid: test
+      secretKey: test_ck_4yKeq5bgrpWWL1GeeBG4VGX0lzW6
+      clientKey: test_sk_Poxy1XQL8R9qDPRBpgJlr7nO5Wml
+      payUrl: https://api.tosspayments.com/v1/payments/confirm
