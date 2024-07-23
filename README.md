@@ -2,7 +2,7 @@
 
 ### 개선 방향
 
-Pg/결제수단 전략 객체를 명시적으로 관리
+1. Pg/결제수단 전략 객체를 명시적으로 관리
 
 - Enum 활용
 - Bean 객체 주입을 위해 PostConstruct 기능 사용
@@ -42,3 +42,12 @@ public enum PaymentType {
     - TOSS_ACCOUNT: 토스/실시간계좌이체 → TossProcessor
     
     ⇒ 동일 객체에서 승인/취소 로직 수행
+
+2. WebClient 예외 처리
+- onStatus 활용
+```java
+                .onStatus(status -> status.is4xxClientError() || status.is5xxServerError()
+                        , clientResponse -> clientResponse
+                                .bodyToMono(TossError.class)
+                                .map(e -> new RuntimeException(e.getMessage())))
+```
