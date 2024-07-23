@@ -8,6 +8,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
@@ -21,7 +25,6 @@ public enum PaymentType {
     private final PgType pgType;
     private final PayWayType payWayType;
     private PaymentProcessor processor;
-
 
     @Component
     @RequiredArgsConstructor
@@ -39,11 +42,11 @@ public enum PaymentType {
     }
 
     public static PaymentProcessor lookUpPaymentProcessor(String pgCode, String payWayCode){
-        PaymentType paymentType = lookUpaymentType(pgCode, payWayCode);
+        PaymentType paymentType = lookupPaymentType(pgCode, payWayCode);
         return paymentType.processor;
     }
 
-    public static PaymentType lookUpaymentType(String pgCode, String payWayCode){
+    public static PaymentType lookupPaymentType(String pgCode, String payWayCode){
         return Stream.of(values())
                 .filter(e -> e.pgType.getCode().equals(pgCode)
                         && e.payWayType.getCode().equals(payWayCode))

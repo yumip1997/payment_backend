@@ -9,7 +9,6 @@ public class PayUnitRequest {
 
     private long payAmt;
     private String mid;
-    private String pgId;
     private String pgCode;
     private String payWayCode;
     private Map<String, String> authMap;

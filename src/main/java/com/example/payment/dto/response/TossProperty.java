@@ -1,6 +1,7 @@
 package com.example.payment.dto.response;
 
 import com.example.payment.constants.PaymentConstants;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,10 +12,12 @@ import java.util.Base64;
 @Setter
 public class TossProperty {
 
-    private String mid;
+    private String pgId;
     private String clientKey;
-    private String secretKey;
     private String customerKey;
+    @JsonIgnore
+    private String secretKey;
+    @JsonIgnore
     private String payUrl;
 
     public String makeAuthorizationHeaderValue(){

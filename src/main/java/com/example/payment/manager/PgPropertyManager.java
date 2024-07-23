@@ -27,7 +27,7 @@ public class PgPropertyManager {
 
     @PostConstruct
     void initMap(){
-        tossPropertyMap = convertMapByMid(tossPropertyList, TossProperty::getMid);
+        tossPropertyMap = convertMapByMid(tossPropertyList, TossProperty::getPgId);
     }
 
     private <T> Map<String, T> convertMapByMid(List<T> list, Function<T, String> midMapper){
@@ -39,7 +39,7 @@ public class PgPropertyManager {
                 .collect(Collectors.toMap(midMapper, Function.identity(), (o1,o2) -> o1));
     }
 
-    public TossProperty lookupTossProperty(String mid){
-        return tossPropertyMap.get(mid);
+    public TossProperty lookupTossProperty(String pgId){
+        return tossPropertyMap.get(pgId);
     }
 }
